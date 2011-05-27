@@ -9,9 +9,13 @@
 #import "HelloWorldViewController.h"
 
 @implementation HelloWorldViewController
+@synthesize label;
+@synthesize button;
 
 - (void)dealloc
 {
+    [label release];
+    [button release];
     [super dealloc];
 }
 
@@ -35,6 +39,8 @@
 
 - (void)viewDidUnload
 {
+    [self setLabel:nil];
+    [self setButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -46,4 +52,11 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (IBAction)pushedButton:(id)sender {
+    label.text = @"Hello World";
+    label.textColor = [UIColor redColor];
+    
+    NSLog(@"pushedButton: saying Hello World");
+    NSLog(@"sender.title = %@", [(UIButton *)sender titleLabel].text );
+}
 @end
